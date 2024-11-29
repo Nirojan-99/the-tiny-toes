@@ -1,6 +1,8 @@
+import 'package:baby_gallery/screens/album_screen.dart';
 import 'package:baby_gallery/screens/login_screen.dart';
 import 'package:baby_gallery/screens/splash_screen.dart';
 import 'package:baby_gallery/screens/users_screen.dart';
+import 'package:baby_gallery/services/album_provider.dart';
 import 'package:baby_gallery/services/auth_provider.dart';
 import 'package:baby_gallery/services/user_provider.dart';
 import 'package:baby_gallery/theme/custom_dark_theme.dart';
@@ -13,6 +15,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (context) => AuthProvider()),
         ChangeNotifierProvider(create: (context) => UsersProvider()),
+        ChangeNotifierProvider(create: (context) => AlbumsProvider()),
       ],
       child: const MyApp(),
     ),
@@ -32,6 +35,7 @@ class MyApp extends StatelessWidget {
       routes: {
         "/login": (context) => const LoginScreen(),
         "/users": (context) => const UsersScreen(),
+        "/albums": (context) => const AlbumScreen(),
       },
     );
   }
