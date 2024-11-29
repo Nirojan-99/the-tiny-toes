@@ -4,10 +4,12 @@ class StorageService {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('username', username);
   }
-  Future<String?> getUsername() async {
+
+  Future<String> getUsername() async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getString('username');
+    return prefs.getString('username') ?? '';
   }
+
   Future<void> clearStorage() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.clear();

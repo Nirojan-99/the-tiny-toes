@@ -1,4 +1,4 @@
-import 'package:baby_gallery/services/auth_provider.dart';
+import 'package:baby_gallery/components/custom_app_bar.dart';
 import 'package:baby_gallery/services/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -9,18 +9,11 @@ class UsersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final usersProvider = Provider.of<UsersProvider>(context, listen: false);
-    final authProvider = Provider.of<AuthProvider>(context);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Users'),
-        actions: [
-          IconButton(
-            color: Colors.white,
-            icon: const Icon(Icons.logout),
-            onPressed: () => authProvider.logout(context),
-          ),
-        ],
+      appBar: CustomAppBar(
+        isPrevScreenAvailable: false,
+        screenName: "Users",
       ),
       body: FutureBuilder<void>(
         future: usersProvider.fetchUsers(),

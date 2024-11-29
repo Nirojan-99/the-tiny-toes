@@ -1,5 +1,5 @@
+import 'package:baby_gallery/components/custom_app_bar.dart';
 import 'package:baby_gallery/services/album_provider.dart';
-import 'package:baby_gallery/services/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -9,31 +9,15 @@ class AlbumScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final albumsProvider = Provider.of<AlbumsProvider>(context, listen: false);
-    final authProvider = Provider.of<AuthProvider>(context);
 
     int? userId;
 
     userId ??= ModalRoute.of(context)?.settings.arguments as int?;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Albums'),
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        actions: [
-          IconButton(
-            color: Colors.white,
-            icon: const Icon(Icons.logout),
-            onPressed: () => authProvider.logout(context),
-          ),
-        ],
+      appBar: CustomAppBar(
+        isPrevScreenAvailable: true,
+        screenName: "Albums",
       ),
       body: FutureBuilder<void>(
         future: albumsProvider.fetchAlbums(userId),

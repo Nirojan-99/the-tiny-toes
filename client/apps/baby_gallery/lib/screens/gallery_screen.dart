@@ -1,6 +1,6 @@
+import 'package:baby_gallery/components/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:baby_gallery/services/auth_provider.dart';
 import 'package:baby_gallery/services/gallery_provider.dart';
 
 class GalleryScreen extends StatelessWidget {
@@ -11,25 +11,15 @@ class GalleryScreen extends StatelessWidget {
     // Providers
     final galleryProvider =
         Provider.of<GalleryProvider>(context, listen: false);
-    final authProvider = Provider.of<AuthProvider>(context);
 
     // Get album ID from route arguments
     int? albumId;
     albumId ??= ModalRoute.of(context)?.settings.arguments as int?;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Albums'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.pop(context),
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.logout, color: Colors.white),
-            onPressed: () => authProvider.logout(context),
-          ),
-        ],
+      appBar: CustomAppBar(
+        isPrevScreenAvailable: true,
+        screenName: "Gallery",
       ),
       body: FutureBuilder<void>(
         future: galleryProvider.fetchGalleries(albumId),
