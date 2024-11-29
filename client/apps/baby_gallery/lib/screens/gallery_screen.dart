@@ -86,7 +86,7 @@ class GalleryScreen extends StatelessWidget {
                         Navigator.pushNamed(
                           context,
                           "/photo",
-                          arguments: gallery['thumbnailUrl'],
+                          arguments: gallery,
                         );
                       },
                       child: Column(

@@ -1,6 +1,7 @@
 import 'package:baby_gallery/screens/album_screen.dart';
 import 'package:baby_gallery/screens/gallery_screen.dart';
 import 'package:baby_gallery/screens/login_screen.dart';
+import 'package:baby_gallery/screens/photo_screen.dart';
 import 'package:baby_gallery/screens/splash_screen.dart';
 import 'package:baby_gallery/screens/users_screen.dart';
 import 'package:baby_gallery/services/album_provider.dart';
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
         "/users": (context) => const UsersScreen(),
         "/albums": (context) => const AlbumScreen(),
         "/gallery": (context) => const GalleryScreen(),
+        "/photo": (context) => const PhotoScreen(),
       },
     );
   }
