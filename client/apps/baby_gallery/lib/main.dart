@@ -1,4 +1,5 @@
 import 'package:baby_gallery/screens/login_screen.dart';
+import 'package:baby_gallery/screens/splash_screen.dart';
 import 'package:baby_gallery/screens/users_screen.dart';
 import 'package:baby_gallery/services/auth_provider.dart';
 import 'package:baby_gallery/theme/custom_dark_theme.dart';
@@ -9,7 +10,7 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        Provider(create: (context) => AuthProvider()),
+        ChangeNotifierProvider(create: (context) => AuthProvider()),
       ],
       child: const MyApp(),
     ),
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
       title: 'Baby Gallery',
       theme: customDarkTheme(),
       debugShowCheckedModeBanner: false,
-      home: const LoginScreen(),
+      home: const SplashScreen(),
       routes: {
         "/login": (context) => const LoginScreen(),
         "/users": (context) => const UsersScreen(),

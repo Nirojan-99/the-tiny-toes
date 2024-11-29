@@ -1,14 +1,26 @@
+import 'package:baby_gallery/services/auth_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class UsersScreen extends StatefulWidget {
+class UsersScreen extends StatelessWidget {
   const UsersScreen({super.key});
-  @override
-  State<UsersScreen> createState() => _UsersScreenState();
-}
 
-class _UsersScreenState extends State<UsersScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    final authProvider = Provider.of<AuthProvider>(context);
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Users'),
+        actions: [
+          IconButton(
+            color: Colors.white,
+            icon: const Icon(Icons.logout),
+            onPressed: () => authProvider.logout(context),
+          ),
+        ],
+      ),
+      body: const Center(child: Text('Users Page')),
+    );
   }
 }

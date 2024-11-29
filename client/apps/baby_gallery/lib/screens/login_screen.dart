@@ -7,6 +7,7 @@ import 'package:baby_gallery/services/auth_provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
@@ -15,10 +16,12 @@ class _LoginScreenState extends State<LoginScreen> {
   // Controllers for input fields
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
   // Error messages
   String? _emailError;
   String? _passwordError;
   double invalidLoginHight = 0;
+
   // Handle login logic
   Future<void> _handleLogin() async {
     setState(() {
@@ -26,8 +29,10 @@ class _LoginScreenState extends State<LoginScreen> {
       _passwordError = null;
       invalidLoginHight = 0;
     });
+
     final String email = _emailController.text.trim();
     final String password = _passwordController.text.trim();
+
     // Input validation
     if (email.isEmpty) {
       setState(() {
@@ -41,10 +46,12 @@ class _LoginScreenState extends State<LoginScreen> {
       });
       return;
     }
+
     // Access the AuthProvider for login validation
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
-    final String? error = authProvider.validateLogin(email, password);
-    if (error == null) {
+    final bool? error = await authProvider.validateLogin(email, password);
+
+    if (error!) {
       Navigator.pushReplacementNamed(context, '/users');
     } else {
       setState(() {
@@ -57,6 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Login"),
@@ -84,6 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             SizedBox(height: height * 0.02),
+
             // Password Field
             CLabel("Password"),
             TextField(
