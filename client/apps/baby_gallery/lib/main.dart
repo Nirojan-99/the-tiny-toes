@@ -2,6 +2,7 @@ import 'package:baby_gallery/screens/login_screen.dart';
 import 'package:baby_gallery/screens/splash_screen.dart';
 import 'package:baby_gallery/screens/users_screen.dart';
 import 'package:baby_gallery/services/auth_provider.dart';
+import 'package:baby_gallery/services/user_provider.dart';
 import 'package:baby_gallery/theme/custom_dark_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -11,6 +12,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => AuthProvider()),
+        ChangeNotifierProvider(create: (context) => UsersProvider()),
       ],
       child: const MyApp(),
     ),

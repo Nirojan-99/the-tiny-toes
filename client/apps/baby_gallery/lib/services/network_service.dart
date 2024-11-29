@@ -11,7 +11,7 @@ class NetworkService {
         throw Exception('Failed to fetch data');
       }
     } catch (e) {
-      throw Exception('Error: $e');
+      throw Exception(e);
     }
   }
 }
