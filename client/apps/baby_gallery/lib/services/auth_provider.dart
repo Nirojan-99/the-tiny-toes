@@ -22,7 +22,7 @@ class AuthProvider with ChangeNotifier {
 
   Future<bool> checkLoginStatus() async {
     final username = await _storageService.getUsername();
-    return username != null;
+    return username.isNotEmpty;//bug fixed
   }
 
   Future<void> logout(BuildContext context) async {
